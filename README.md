@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>BLS-Like Signature GUI</h1>
+    <h1>BLS Signature GUI</h1>
     <p>This is a Python implementation of a simplified BLS-like signature scheme with a graphical user interface (GUI). The code demonstrates signing and verifying messages using a basic cryptographic setup.</p>
 
    <h2>How to Use</h2>
