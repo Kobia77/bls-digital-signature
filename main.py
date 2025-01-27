@@ -125,8 +125,7 @@ g_t = 11
 # Generate keys
 sk, pk_exp, pk_numeric = keygen()
 
-
-# GUI implementation
+#GUI implementation
 def create_gui():
     def sign():
         message = message_entry.get()
@@ -149,52 +148,59 @@ def create_gui():
             return
 
         h_exp, left_side, right_side, is_valid = verify_signature(pk_exp, message, sig_exp)
-        result_label.config(text=f"Verification Result: {'Valid' if is_valid else 'Invalid'}")
+        if is_valid:
+            result_label.config(text="Verification Result: VALID", fg="green")
+        else:
+            result_label.config(text="Verification Result: INVALID", fg="red")
         verification_details_label.config(
             text=f"Hash Exponent: {h_exp}\nLeft Side: {left_side}\nRight Side: {right_side}"
         )
 
     # Root window
     root = tk.Tk()
-    root.title("BLS-Like Signature GUI")
+    root.title("BLS Signature GUI")
     root.geometry("800x600")
+    root.configure(bg="#f4f4f4")
 
     # Key display
-    keys_frame = tk.Frame(root)
-    keys_frame.pack(pady=10)
+    keys_frame = tk.Frame(root, bg="#f4f4f4", pady=10)
+    keys_frame.pack()
 
-    tk.Label(keys_frame, text=f"Secret Key (sk): {sk}", font=("Helvetica", 14)).pack()
+    tk.Label(keys_frame, text=f"Secret Key (sk): {sk}", font=("Helvetica", 12, "bold"), bg="#f4f4f4").pack()
     tk.Label(keys_frame, text=f"Public Key (exp): {pk_exp}\nPublic Key (numeric): {pk_numeric}",
-             font=("Helvetica", 14)).pack()
+             font=("Helvetica", 12), bg="#f4f4f4").pack()
 
     # Signing section
-    sign_frame = tk.Frame(root)
-    sign_frame.pack(pady=10)
+    sign_frame = tk.LabelFrame(root, text="Sign Message", font=("Helvetica", 12, "bold"), bg="#e9ecef", padx=15, pady=15)
+    sign_frame.pack(pady=15, padx=10, fill="x")
 
-    tk.Label(sign_frame, text="Message to Sign:", font=("Helvetica", 14)).pack()
-    message_entry = tk.Entry(sign_frame, width=50, font=("Helvetica", 14))
-    message_entry.pack()
+    tk.Label(sign_frame, text="Message to Sign:", font=("Helvetica", 12), bg="#e9ecef").pack()
+    message_entry = tk.Entry(sign_frame, width=50, font=("Helvetica", 12))
+    message_entry.pack(pady=5)
 
-    tk.Button(sign_frame, text="Sign Message", command=sign, font=("Helvetica", 14)).pack()
+    tk.Button(sign_frame, text="Sign Message", command=sign, font=("Helvetica", 12), bg="#4caf50", fg="white",
+              activebackground="#45a049").pack(pady=10)
 
-    signed_message_label = tk.Label(sign_frame, text="Signature: None", font=("Helvetica", 14))
+    signed_message_label = tk.Label(sign_frame, text="Signature: None", font=("Helvetica", 12), bg="#e9ecef", fg="#333")
     signed_message_label.pack()
 
     # Verification section
-    verify_frame = tk.Frame(root)
-    verify_frame.pack(pady=10)
+    verify_frame = tk.LabelFrame(root, text="Verify Message", font=("Helvetica", 12, "bold"), bg="#e9ecef", padx=15, pady=15)
+    verify_frame.pack(pady=15, padx=10, fill="x")
 
-    tk.Label(verify_frame, text="Message to Verify:", font=("Helvetica", 14)).pack()
-    verify_entry = tk.Entry(verify_frame, width=50, font=("Helvetica", 14))
-    verify_entry.pack()
+    tk.Label(verify_frame, text="Message to Verify:", font=("Helvetica", 12), bg="#e9ecef").pack()
+    verify_entry = tk.Entry(verify_frame, width=50, font=("Helvetica", 12))
+    verify_entry.pack(pady=5)
 
-    tk.Button(verify_frame, text="Verify Signature", command=verify, font=("Helvetica", 14)).pack()
+    tk.Button(verify_frame, text="Verify Signature", command=verify, font=("Helvetica", 12), bg="#2196f3", fg="white",
+              activebackground="#1976d2").pack(pady=10)
 
-    result_label = tk.Label(verify_frame, text="Verification Result: None", font=("Helvetica", 14))
+    result_label = tk.Label(verify_frame, text="Verification Result: None", font=("Helvetica", 12, "bold"),
+                            bg="#e9ecef", fg="#333")
     result_label.pack()
 
-    verification_details_label = tk.Label(verify_frame, text="", font=("Helvetica", 14))
-    verification_details_label.pack()
+    verification_details_label = tk.Label(verify_frame, text="", font=("Helvetica", 12), bg="#e9ecef", fg="#555")
+    verification_details_label.pack(pady=10)
 
     root.mainloop()
 

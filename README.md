@@ -62,5 +62,6 @@
 
    <h2>License</h2>
    <p>Feel free to use and modify the code for learning purposes. Not for production use.</p>
+    <p>Made By: Kobi Alen, Lior Engel and Matan Kahlon.</p>
 </body>
 </html>
