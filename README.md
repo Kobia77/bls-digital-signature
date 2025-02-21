@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>BLS Signature GUI</h1>
-    <p>This project provides Python implementations of a simplified BLS-like signature scheme, with both single and aggregate signature functionality, complete with graphical user interfaces (GUIs) for demonstration purposes.</p>
+    <p>This project provides Python implementations of a BLS signature implementation, with both single and aggregate signature functionality, complete with graphical user interfaces (GUIs) for demonstration purposes.</p>
 
    <h2>Directory Structure</h2>
    <pre>
